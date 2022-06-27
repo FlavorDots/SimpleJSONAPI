@@ -11,13 +11,10 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @RequiredArgsConstructor
-public class SubjectIDSubjectCodeDTO {
+public class SubjectIDSubjectCodeDTO  {
 
     private String student_id;
 
     private List<ClassDetailsDTO> class_details;
 
-    public List<ClassDetailsDTO> getClass_details() {
-        return class_details;
-    }
 }

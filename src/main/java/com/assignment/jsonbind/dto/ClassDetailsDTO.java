@@ -9,7 +9,7 @@ import lombok.RequiredArgsConstructor;
 @Data
 @AllArgsConstructor
 @RequiredArgsConstructor
-public class ClassDetailsDTO {
+public class ClassDetailsDTO  {
 
     private String subject_code;
 
