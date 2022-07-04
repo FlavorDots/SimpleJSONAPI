@@ -6,6 +6,7 @@ import com.assignment.jsonbind.dto.SubjectIDSubjectCodeDTO;
 import com.assignment.jsonbind.service.SubjectStudentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -41,6 +42,7 @@ public class SubjectStudentServiceImpl implements SubjectStudentService {
                     listOfStudentIds.add(subjID.getStudent_id());
                 }
             }
+//            PageRequest g = new PageRequest();
         }
         return listOfStudentIds;
     }

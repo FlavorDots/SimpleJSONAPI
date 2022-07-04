@@ -15,7 +15,6 @@ public class Bean {
     public List<SubjectIDSubjectCodeDTO> jsonFile() throws Exception{
         return new ObjectMapper().readValue(
                 Paths.get("src/main/resources/json/output.json").toFile(), new TypeReference<>() {}
-
         );
     }
 }
