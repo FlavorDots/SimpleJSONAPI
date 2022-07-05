@@ -1,6 +1,7 @@
 package com.assignment.jsonbind.controller;
 
 
+import com.assignment.jsonbind.entity.Student;
 import com.assignment.jsonbind.service.SubjectStudentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,7 @@ public class SubjectStudentController {
 
     @GetMapping(value = "/{subjectCode}",
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Set> getStudentIdsGivenASubjectCode(@PathVariable("subjectCode") String subjectCode) throws Exception {
+    public ResponseEntity<Set<Student>> getStudentIdsGivenASubjectCode(@PathVariable("subjectCode") String subjectCode) throws Exception {
         return new ResponseEntity(subjectStudentService.getUniqueStudentIds(subjectCode), HttpStatus.OK);
     }
 
