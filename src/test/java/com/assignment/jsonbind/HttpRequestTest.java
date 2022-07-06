@@ -37,16 +37,16 @@ public class HttpRequestTest {
                 "International Project Management", "Information System Development", "International Marketing", "Corporate Finance");
     }
 
-    @Test
-    public void getStudentIdsGivenASubjectCodeShouldReturnProperResponse()
-    throws Exception{
-        String subjectCode = "ACC3TAX";
-
-        String[] ss =
-                subjectStudentService.getUniqueStudentIds(subjectCode)
-                                .toArray(new String[0]);
-
-        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/api/v1/subject-student/" + subjectCode, String.class))
-                .contains(ss);
-    }
+//    @Test
+//    public void getStudentIdsGivenASubjectCodeShouldReturnProperResponse()
+//    throws Exception{
+//        String subjectCode = "ACC3TAX";
+//
+//        String[] ss =
+//                subjectStudentService.getUniqueStudentIds(subjectCode)
+//                                .toArray(new String[0]);
+//
+//        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/api/v1/subject-student/" + subjectCode, String.class))
+//                .contains(ss);
+//    }
 }
