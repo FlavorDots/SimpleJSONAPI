@@ -1,22 +1,17 @@
 package com.assignment.jsonbind;
 
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.io.IOException;
-
 @SpringBootApplication
-public class JsonBindApplication implements CommandLineRunner {
+public class JsonBindApplication{
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) {
 		SpringApplication.run(JsonBindApplication.class, args);
 	}
 
-	@Override
-	public void run(String... args) throws Exception {
-
-
+//	@Override
+//	public void run(String... args) throws Exception {
 //		for (StudentDTO subjID : bean.jsonFile()){
 //			Student student = new Student();
 //			student.setStudent_id(subjID.getStudent_id());
@@ -55,6 +50,6 @@ public class JsonBindApplication implements CommandLineRunner {
 			enterHere.setListOfStudents(setsOfStudents);
 			classRepository.save(enterHere);
 		}*/
-	}
+//	}
 
 }

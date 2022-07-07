@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
-import java.time.LocalDate;
 import java.util.Date;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -18,11 +17,11 @@ public class ClassDTO {
 
     private String subject_desc;
 
-    private LocalDate week_start_date;
+    private Date week_start_date;
 
-    private LocalDate week_end_date;
+    private Date week_end_date;
 
-    private LocalDate exact_class_date;
+    private Date exact_class_date;
 
     private String day_of_week;
 
@@ -30,7 +29,7 @@ public class ClassDTO {
 
     private double room;
 
-    private Long gps_coordinates;
+    private String gps_coordinates;
 
     private String start_time;
 
@@ -38,13 +37,9 @@ public class ClassDTO {
 
     private String campus_code;
 
-    private Boolean hasStandardRoomDescription;
+    private boolean hasStandardRoomDescription;
 
-    private Integer duration;
+    private int duration;
 
-    private Character duration_code;
-
-
-
-
+    private char duration_code;
 }
