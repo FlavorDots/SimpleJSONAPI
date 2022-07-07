@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -68,16 +69,71 @@ public class ClassServiceImpl implements IClassService {
 
     @Override
     public ClassDTO create(ClassDTO classDTO) throws Exception {
-        return null;
+        Optional<Class> cls = classRepository.findById(classDTO.getSubject_code());
+
+        if (cls.isPresent()) {
+            throw new Exception("Class already exists");
+        }
+        else {
+            Class cs = new Class();
+
+            cs.setSubject_code(classDTO.getSubject_code());
+            cs.setSubject_desc(classDTO.getSubject_desc());
+            cs.setWeek_start_date(classDTO.getWeek_start_date());
+            cs.setWeek_end_date(classDTO.getWeek_end_date());
+            cs.setExact_class_date(classDTO.getExact_class_date());
+            cs.setDay_of_week(classDTO.getDay_of_week());
+            cs.setRoom_number(classDTO.getRoom_number());
+            cs.setRoom(classDTO.getRoom());
+            cs.setGps_coordinates(classDTO.getGps_coordinates());
+            cs.setStart_time(classDTO.getStart_time());
+            cs.setEnd_time(classDTO.getEnd_time());
+            cs.setCampus_code(classDTO.getCampus_code());
+            cs.setHasStandardRoomDescription(classDTO.isHasStandardRoomDescription());
+            cs.setDuration(classDTO.getDuration());
+            cs.setDuration_code(classDTO.getDuration_code());
+
+            cs = classRepository.save(cs);
+            classDTO.setSubject_code(cs.getSubject_code());
+        }
+        return classDTO;
     }
 
     @Override
     public ClassDTO update(ClassDTO classDTO) throws Exception {
-        return null;
+        Optional<Class> cls = classRepository.findById(classDTO.getSubject_code());
+
+        if (cls.isEmpty()) throw new Exception("Class not found!");
+        else {
+            Class cs = cls.get();
+
+            if (classDTO.getSubject_code() != null) cs.setSubject_code(classDTO.getSubject_code());
+            if (classDTO.getSubject_desc() != null) cs.setSubject_desc(classDTO.getSubject_desc());
+            if (classDTO.getWeek_start_date() != null) cs.setWeek_start_date(classDTO.getWeek_start_date());
+            if (classDTO.getWeek_end_date() != null) cs.setWeek_end_date(classDTO.getWeek_end_date());
+            if (classDTO.getExact_class_date() != null) cs.setExact_class_date(classDTO.getExact_class_date());
+            if (classDTO.getDay_of_week() != null) cs.setDay_of_week(classDTO.getDay_of_week());
+            if (classDTO.getRoom_number() != 0.0) cs.setRoom_number(classDTO.getRoom_number());
+            if (classDTO.getRoom() != 0.0) cs.setRoom(classDTO.getRoom());
+            if (classDTO.getGps_coordinates() != null) cs.setGps_coordinates(classDTO.getGps_coordinates());
+            if (classDTO.getStart_time() != null) cs.setStart_time(classDTO.getStart_time());
+            if (classDTO.getEnd_time() != null) cs.setEnd_time(classDTO.getEnd_time());
+            if (classDTO.getCampus_code() != null) cs.setCampus_code(classDTO.getCampus_code());
+            if (classDTO.isHasStandardRoomDescription() != false) cs.setHasStandardRoomDescription(classDTO.isHasStandardRoomDescription());
+            if (classDTO.getDuration() != 0) cs.setDuration(classDTO.getDuration());
+            if (classDTO.getDuration_code() != ' ') cs.setDuration_code(classDTO.getDuration_code());
+
+            final Class classUpdated = classRepository.save(cs);
+            classDTO.setCampus_code(classUpdated.getSubject_code());
+            return classDTO;
+        }
     }
 
     @Override
     public void delete(String id) throws Exception {
+        Optional<Class> cls = classRepository.findById(id);
 
+        if (cls.isPresent()) classRepository.delete(cls.get());
+        else throw new Exception("Class not found!");
     }
 }

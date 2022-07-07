@@ -38,7 +38,7 @@ public class SubjectStudentServiceImpl implements ISubjectStudentService {
     public Set<String> getUniqueStudentIds(String subjectCode) throws Exception {
         Optional<Class> listOfUniqueStudentIds = classRepository.findById(subjectCode);
         Class cls = new Class();
-        Set<String> listIds = new HashSet<>();
+        Set<String> listIds = new TreeSet<>();
 
         if (listOfUniqueStudentIds.isPresent()) cls = listOfUniqueStudentIds.get();
         else throw new Exception("Class ID " + subjectCode +" not found!");
@@ -46,7 +46,6 @@ public class SubjectStudentServiceImpl implements ISubjectStudentService {
         for (Student std : cls.getListOfStudents()){
             listIds.add(std.getStudent_id());
         }
-
         return listIds;
 
     }
