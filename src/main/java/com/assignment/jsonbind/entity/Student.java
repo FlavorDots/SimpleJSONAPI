@@ -8,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 import javax.persistence.*;
 import java.util.Set;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 @AllArgsConstructor
 @RequiredArgsConstructor

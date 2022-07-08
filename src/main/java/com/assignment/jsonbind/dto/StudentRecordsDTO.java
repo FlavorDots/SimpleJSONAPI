@@ -6,21 +6,17 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
-import java.lang.reflect.MalformedParameterizedTypeException;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-//@JsonIgnoreProperties(ignoreUnknown = true)
 @JsonIgnoreProperties(value = {"class_details"})
 @Data
 @AllArgsConstructor
 @RequiredArgsConstructor
-public class StudentDTO {
+public class StudentRecordsDTO {
 
-    private String student_id;
+    private String student_id_record;
 
-    private Set<Class> class_details;
-
-    private Map<String, String> classID_classDescription;
-
+    private List<String> class_details_record;
 }

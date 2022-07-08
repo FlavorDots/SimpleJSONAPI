@@ -124,7 +124,7 @@ public class ClassServiceImpl implements IClassService {
             if (classDTO.getDuration_code() != ' ') cs.setDuration_code(classDTO.getDuration_code());
 
             final Class classUpdated = classRepository.save(cs);
-            classDTO.setCampus_code(classUpdated.getSubject_code());
+            classDTO.setSubject_code(classUpdated.getSubject_code());
             return classDTO;
         }
     }

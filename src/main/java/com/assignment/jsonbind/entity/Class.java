@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.Objects;
 import java.util.Set;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
+//@JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 @AllArgsConstructor
 @RequiredArgsConstructor
