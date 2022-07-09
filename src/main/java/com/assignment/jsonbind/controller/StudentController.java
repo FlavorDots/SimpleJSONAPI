@@ -37,9 +37,10 @@ public class StudentController {
     @GetMapping("/page")
     public ResponseEntity<List<StudentRecords>> getPaginatedStudents(
             @RequestParam(defaultValue = "0") Integer pageNo,
-            @RequestParam(defaultValue = "10") Integer pageSize)
+            @RequestParam(defaultValue = "10") Integer pageSize,
+            @RequestParam(defaultValue = "student_id_record") String sortBy)
     {
-        List<StudentRecords> studentRecords = studentRecordsService.paginatedListOfStudentRecords(pageNo,pageSize);
+        List<StudentRecords> studentRecords = studentRecordsService.paginatedListOfStudentRecords(pageNo,pageSize, sortBy);
 
         return new ResponseEntity(studentRecords, HttpStatus.OK);
     }

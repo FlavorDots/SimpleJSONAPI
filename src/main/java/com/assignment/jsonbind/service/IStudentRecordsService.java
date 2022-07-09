@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface IStudentRecordsService {
 
-    List<StudentRecords> paginatedListOfStudentRecords(Integer pageNo, Integer pageSize/*, String sortBy*/);
+    List<StudentRecords> paginatedListOfStudentRecords(Integer pageNo, Integer pageSize, String sortBy);
 }

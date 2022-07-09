@@ -25,8 +25,8 @@ public class StudentRecordsImpl implements IStudentRecordsService {
         studentRecordsRepository.deleteAll();
     }
     @Override
-    public List<StudentRecords> paginatedListOfStudentRecords(Integer pageNo, Integer pageSize/*, String sortBy*/) {
-        Pageable pageable = PageRequest.of(pageNo, pageSize);
+    public List<StudentRecords> paginatedListOfStudentRecords(Integer pageNo, Integer pageSize, String sortBy) {
+        Pageable pageable = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
         Page<StudentRecords> pagedResult = studentRecordsRepository.findAll(pageable);
 
         if (pagedResult.hasContent()){
