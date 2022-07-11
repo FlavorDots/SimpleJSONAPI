@@ -6,8 +6,6 @@ import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -16,7 +14,7 @@ import java.util.Set;
 public class StudentRecords {
 
     @Id
-    private String student_id_record;
+    private String studentIdRecord;
 
     @ElementCollection
     @CollectionTable(name = "list_of_class_details_records")

@@ -32,5 +32,10 @@ public class SubjectStudentController {
         return new ResponseEntity(ISubjectStudentService.getUniqueStudentIds(subjectCode), HttpStatus.OK);
     }
 
+    @GetMapping(value = "/testing",
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Map> mockingThis() throws Exception {
+        return new ResponseEntity(ISubjectStudentService.mappingYARN(), HttpStatus.OK);
+    }
 
 }

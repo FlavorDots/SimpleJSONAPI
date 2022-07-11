@@ -1,19 +1,19 @@
 package com.assignment.jsonbind.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
-@JsonIgnoreProperties(value = {"class_details"})
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 @AllArgsConstructor
 @RequiredArgsConstructor
-public class StudentRecordsDTO {
+@JsonInclude(JsonInclude.Include.NON_DEFAULT)
+public class SubjectStudentDTO {
+    List<ClassDTO> subjects;
 
-    private String studentIdRecord;
-
-    private List<String> class_details_record;
 }

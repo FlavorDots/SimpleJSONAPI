@@ -1,8 +1,8 @@
 package com.assignment.jsonbind.service.impl;
 
 import com.assignment.jsonbind.dao.ClassRepository;
-import com.assignment.jsonbind.dao.StudentRepository;
 ;
+import com.assignment.jsonbind.dto.ClassDTO;
 import com.assignment.jsonbind.entity.Class;
 import com.assignment.jsonbind.entity.Student;
 import com.assignment.jsonbind.service.ISubjectStudentService;
@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -20,11 +21,8 @@ public class SubjectStudentServiceImpl implements ISubjectStudentService {
     @Autowired
     ClassRepository classRepository;
 
-    @Autowired
-    StudentRepository studentRepository;
-
     @Override
-    public Map<String, String> getSubjectIdAndSubjectCode() throws Exception {
+    public Map<String, String> getSubjectIdAndSubjectCode() {
 
         Map<String, String> mapIdCode = new HashMap<>();
         for (Class cc : classRepository.findAll()) {
@@ -32,6 +30,16 @@ public class SubjectStudentServiceImpl implements ISubjectStudentService {
         }
 
         return mapIdCode;
+    }
+
+    @Override
+    public List<ClassDTO> mappingYARN() {
+        return classRepository.findAll().stream().map(cls -> {
+            ClassDTO clsDTO = new ClassDTO();
+            clsDTO.setSubject_code(cls.getSubject_code());
+            clsDTO.setSubject_desc(cls.getSubject_desc());
+            return clsDTO;
+        }).collect(Collectors.toList());
     }
 
     @Override

@@ -54,17 +54,17 @@ public class StudentServiceImpl implements IStudentService {
             studentDTO.setClassID_classDescription(map);
 
             //
-            StudentRecords studentRecords = new StudentRecords();
-            Set<String> setOfClassNames = new HashSet<>();
-
-            studentRecords.setStudent_id_record(std.getStudent_id());
-            for (Class ccs : std.getClass_details()){
-                setOfClassNames.add(ccs.getSubject_desc());
-            }
-            List<String> lists = new ArrayList<>(setOfClassNames);
-
-            studentRecords.setClass_details_record(lists);
-            studentRecordsRepository.save(studentRecords);
+//            StudentRecords studentRecords = new StudentRecords();
+//            Set<String> setOfClassNames = new HashSet<>();
+//
+//            studentRecords.setStudentIdRecord(std.getStudent_id());
+//            for (Class ccs : std.getClass_details()){
+//                setOfClassNames.add(ccs.getSubject_desc());
+//            }
+//            List<String> lists = new ArrayList<>(setOfClassNames);
+//
+//            studentRecords.setClass_details_record(lists);
+//            studentRecordsRepository.save(studentRecords);
             //
 
             return studentDTO;

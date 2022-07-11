@@ -38,7 +38,7 @@ public class StudentController {
     public ResponseEntity<List<StudentRecords>> getPaginatedStudents(
             @RequestParam(defaultValue = "0") Integer pageNo,
             @RequestParam(defaultValue = "10") Integer pageSize,
-            @RequestParam(defaultValue = "student_id_record") String sortBy)
+            @RequestParam(defaultValue = "studentIdRecord") String sortBy)
     {
         List<StudentRecords> studentRecords = studentRecordsService.paginatedListOfStudentRecords(pageNo,pageSize, sortBy);
 
