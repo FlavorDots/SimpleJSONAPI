@@ -37,8 +37,8 @@ public class StudentRecordsImpl implements IStudentRecordsService {
     @Override
     public List<StudentRecords> paginatedListOfStudentRecords(Integer pageNo, Integer pageSize, String sortBy) {
         persistRecords();
-        Pageable pageable = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
-        Page<StudentRecords> pagedResult = studentRecordsRepository.findAll(pageable);
+        var pageable = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
+        var pagedResult = studentRecordsRepository.findAll(pageable);
 
         if (pagedResult.hasContent()) {
             return pagedResult.getContent();
@@ -49,14 +49,14 @@ public class StudentRecordsImpl implements IStudentRecordsService {
         studentRecordsRepository.deleteAll();
 
         studentRepository.findAll().stream().map(std -> {
-            StudentRecords studentRecords = new StudentRecords();
-            Set<String> setOfClassNames = new HashSet<>();
+            var studentRecords = new StudentRecords();
+            var setOfClassNames = new HashSet<String>();
 
             studentRecords.setStudentIdRecord(std.getStudent_id());
-            for (Class ccs : std.getClass_details()){
+            for (var ccs : std.getClass_details()){
                 setOfClassNames.add(ccs.getSubject_desc());
             }
-            List<String> lists = new ArrayList<>(setOfClassNames);
+            var lists = new ArrayList<String>(setOfClassNames);
 
             studentRecords.setClass_details_record(lists);
             studentRecordsRepository.save(studentRecords);

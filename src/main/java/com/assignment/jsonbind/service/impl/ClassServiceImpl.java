@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -19,7 +18,7 @@ public class ClassServiceImpl implements IClassService {
 
     @Override
     public ClassDTO view(String id) throws Exception {
-        Class cls = classRepository.findById(id)
+        var cls = classRepository.findById(id)
                 .orElseThrow(() -> new Exception("Class does not exist!"));
 
         ClassDTO classDTO = new ClassDTO();
@@ -46,7 +45,7 @@ public class ClassServiceImpl implements IClassService {
     @Override
     public List<ClassDTO> list() {
         return classRepository.findAll().stream().map(cls ->{
-            ClassDTO classDTO = new ClassDTO();
+            var classDTO = new ClassDTO();
 
             classDTO.setSubject_code(cls.getSubject_code());
             classDTO.setSubject_desc(cls.getSubject_desc());
@@ -69,13 +68,13 @@ public class ClassServiceImpl implements IClassService {
 
     @Override
     public ClassDTO create(ClassDTO classDTO) throws Exception {
-        Optional<Class> cls = classRepository.findById(classDTO.getSubject_code());
+        var cls = classRepository.findById(classDTO.getSubject_code());
 
         if (cls.isPresent()) {
             throw new Exception("Class already exists");
         }
         else {
-            Class cs = new Class();
+            var cs = new Class();
 
             cs.setSubject_code(classDTO.getSubject_code());
             cs.setSubject_desc(classDTO.getSubject_desc());
@@ -101,11 +100,11 @@ public class ClassServiceImpl implements IClassService {
 
     @Override
     public ClassDTO update(ClassDTO classDTO) throws Exception {
-        Optional<Class> cls = classRepository.findById(classDTO.getSubject_code());
+        var cls = classRepository.findById(classDTO.getSubject_code());
 
         if (cls.isEmpty()) throw new Exception("Class not found!");
         else {
-            Class cs = cls.get();
+            var cs = cls.get();
 
             if (classDTO.getSubject_code() != null) cs.setSubject_code(classDTO.getSubject_code());
             if (classDTO.getSubject_desc() != null) cs.setSubject_desc(classDTO.getSubject_desc());
@@ -123,7 +122,7 @@ public class ClassServiceImpl implements IClassService {
             if (classDTO.getDuration() != 0) cs.setDuration(classDTO.getDuration());
             if (classDTO.getDuration_code() != ' ') cs.setDuration_code(classDTO.getDuration_code());
 
-            final Class classUpdated = classRepository.save(cs);
+            final var classUpdated = classRepository.save(cs);
             classDTO.setSubject_code(classUpdated.getSubject_code());
             return classDTO;
         }
@@ -131,7 +130,7 @@ public class ClassServiceImpl implements IClassService {
 
     @Override
     public void delete(String id) throws Exception {
-        Optional<Class> cls = classRepository.findById(id);
+        var cls = classRepository.findById(id);
 
         if (cls.isPresent()) classRepository.delete(cls.get());
         else throw new Exception("Class not found!");

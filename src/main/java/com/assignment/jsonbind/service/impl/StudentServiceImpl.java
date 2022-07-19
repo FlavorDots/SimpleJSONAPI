@@ -6,7 +6,6 @@ import com.assignment.jsonbind.dao.StudentRepository;
 import com.assignment.jsonbind.dto.StudentDTO;
 import com.assignment.jsonbind.entity.Class;
 import com.assignment.jsonbind.entity.Student;
-import com.assignment.jsonbind.entity.StudentRecords;
 import com.assignment.jsonbind.service.IStudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,11 +24,12 @@ public class StudentServiceImpl implements IStudentService {
 
     @Autowired
     StudentRecordsRepository studentRecordsRepository;
+
     @Override
     public StudentDTO view(String id) throws Exception {
         Student student = studentRepository.findById(id)
                 .orElseThrow(() -> new Exception("Student ID not found!"));
-        Map<String, String> map = new HashMap<>();
+        var map = new HashMap<String,String>();
         for (Class cs : student.getClass_details()) {
             map.put(cs.getSubject_code(), cs.getSubject_desc());
         }
@@ -45,27 +45,13 @@ public class StudentServiceImpl implements IStudentService {
     public List<StudentDTO> list() {
         return studentRepository.findAll().stream().map(std -> {
             StudentDTO studentDTO = new StudentDTO();
-            Map<String, String> map = new HashMap<>();
+            var map = new HashMap<String, String>();
 
             for (Class cs : std.getClass_details()) {
                 map.put(cs.getSubject_code(), cs.getSubject_desc());
             }
             studentDTO.setStudent_id(std.getStudent_id());
             studentDTO.setClassID_classDescription(map);
-
-            //
-//            StudentRecords studentRecords = new StudentRecords();
-//            Set<String> setOfClassNames = new HashSet<>();
-//
-//            studentRecords.setStudentIdRecord(std.getStudent_id());
-//            for (Class ccs : std.getClass_details()){
-//                setOfClassNames.add(ccs.getSubject_desc());
-//            }
-//            List<String> lists = new ArrayList<>(setOfClassNames);
-//
-//            studentRecords.setClass_details_record(lists);
-//            studentRecordsRepository.save(studentRecords);
-            //
 
             return studentDTO;
         }).collect(Collectors.toList());
@@ -76,7 +62,7 @@ public class StudentServiceImpl implements IStudentService {
         Optional<Student> student = Optional.ofNullable(studentRepository.findById(studentDTO.getStudent_id())
                 .orElseThrow(() -> new Exception("Student does not exist!")));
         Student std = student.get();
-        Set<Class> setClass = new HashSet<>();
+        var setClass = new HashSet<Class>();
 
         std.setStudent_id(studentDTO.getStudent_id());
 
@@ -98,7 +84,7 @@ public class StudentServiceImpl implements IStudentService {
                 .orElseThrow(() -> new Exception("Student ID not found")));
 
         Student std = student.get();
-        Set<Class> setClass = new HashSet<>();
+        var setClass = new HashSet<Class>();
 
         if (studentDTO.getStudent_id() != null) std.setStudent_id(studentDTO.getStudent_id());
 

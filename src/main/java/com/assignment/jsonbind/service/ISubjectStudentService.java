@@ -1,16 +1,14 @@
 package com.assignment.jsonbind.service;
 
 import com.assignment.jsonbind.dto.ClassDTO;
-
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import com.assignment.jsonbind.dto.SubjectStudentDTO;
 
 public interface ISubjectStudentService {
 
-    Map<String, String> getSubjectIdAndSubjectCode() throws Exception;
-    List<ClassDTO> mappingYARN() throws Exception;
+//    Map<String, String> getSubjectIdAndSubjectCode() throws Exception;
 
+    SubjectStudentDTO allSubjects() throws Exception;
 
-    Set<String> getUniqueStudentIds(String subjectCode) throws Exception;
+    ClassDTO viewStudentsEnrolled(String subjectCode) throws Exception;
+//    Set<String> getUniqueStudentIds(String subjectCode) throws Exception;
 }

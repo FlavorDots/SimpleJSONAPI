@@ -1,5 +1,8 @@
 package com.assignment.jsonbind.dto;
 
+import com.assignment.jsonbind.entity.Class;
+import com.assignment.jsonbind.entity.Student;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
@@ -8,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
@@ -45,5 +49,9 @@ public class ClassDTO {
     private int duration;
 
     private char duration_code;
+
+    @JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
+    private List<SubjectStudentDTO> student_ids;
+
 
 }

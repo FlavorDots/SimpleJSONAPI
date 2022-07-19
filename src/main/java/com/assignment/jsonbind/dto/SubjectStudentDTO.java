@@ -16,4 +16,5 @@ import java.util.List;
 public class SubjectStudentDTO {
     List<ClassDTO> subjects;
 
+    String student_id;
 }
