@@ -1,19 +1,15 @@
 package com.assignment.jsonbind.controller;
 
 
-import com.assignment.jsonbind.service.SubjectStudentService;
+import com.assignment.jsonbind.dto.ClassDTO;
+import com.assignment.jsonbind.dto.SubjectStudentDTO;
+import com.assignment.jsonbind.service.ISubjectStudentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.Map;
-import java.util.Set;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/subject-student")
@@ -21,21 +17,31 @@ import java.util.Set;
 public class SubjectStudentController {
 
     @Autowired
-    SubjectStudentService subjectStudentService;
+    ISubjectStudentService ISubjectStudentService;
 
-    @GetMapping(value = "/subjects",
-    produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Map> getSubjectIdAndCode() throws Exception {
-        return new ResponseEntity(subjectStudentService.getSubjectIdAndSubjectCode(), HttpStatus.OK);
+//    @GetMapping(value = "/subjects",
+//    produces = MediaType.APPLICATION_JSON_VALUE)
+//    public ResponseEntity<Map> getSubjectIdAndCode() throws Exception {
+//        return new ResponseEntity(ISubjectStudentService.getSubjectIdAndSubjectCode(), HttpStatus.OK);
+//    }
+
+//    @GetMapping(value = "/{subjectCode}",
+//            produces = MediaType.APPLICATION_JSON_VALUE)
+//    public ResponseEntity<List<String>> getStudentIdsGivenASubjectCode(@PathVariable("subjectCode") String subjectCode) throws Exception {
+//        return new ResponseEntity(ISubjectStudentService.getUniqueStudentIds(subjectCode), HttpStatus.OK);
+//    }
+
+    @GetMapping(value = "/all-subjects",
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<SubjectStudentDTO> getAllSubjects() throws Exception {
+        return new ResponseEntity(ISubjectStudentService.allSubjects(), HttpStatus.OK);
     }
 
     @GetMapping(value = "/{subjectCode}",
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Set> getStudentIdsGivenASubjectCode(@PathVariable("subjectCode") String subjectCode) throws Exception {
-        return new ResponseEntity(subjectStudentService.getUniqueStudentIds(subjectCode), HttpStatus.OK);
+    public ResponseEntity<ClassDTO> getStudentsEnrolledInASubject(
+            @PathVariable("subjectCode") String subjectCode) throws Exception {
+        return new ResponseEntity(ISubjectStudentService.viewStudentsEnrolled(subjectCode), HttpStatus.OK);
     }
-
-
-
 
 }
